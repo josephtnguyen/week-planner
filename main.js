@@ -17,6 +17,21 @@ var $entryBtn = document.querySelector('.entry-button');
 var $allViews = document.querySelectorAll('.view');
 var $entryForm = document.querySelector('.entry-form');
 var $formCancelButton = document.querySelector('.cancel-modal-button');
+var $tableBody = document.querySelector('.tableBody');
+
+function generateTableRow(entry) {
+  var $tr = document.createElement('tr');
+  var $tdTime = document.createElement('td');
+  var $tdDescription = document.createElement('td');
+
+  $tdTime.textContent = entry.time + ':00';
+  $tdDescription.textContent = entry.description;
+
+  $tr.append($tdTime, $tdDescription);
+
+  console.log($tr);
+  return $tr;
+}
 
 window.addEventListener('beforeunload', handleUnload);
 window.addEventListener('DOMContentLoaded', handleDOMContent);
@@ -82,4 +97,3 @@ function handleSubmit(event) {
   $entryForm.reset();
   event.target.closest('.view').classList.add('hidden');
 }
-
