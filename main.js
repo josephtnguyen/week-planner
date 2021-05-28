@@ -11,10 +11,25 @@ var data = {
   }
 };
 
+window.addEventListener('beforeunload', handleUnload);
+window.addEventListener('DOMContentLoaded', handleDOMContent);
+function handleUnload(event) {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('data', dataJSON);
+}
+
+function handleDOMContent(event) {
+  if (previousDataJSON) {
+    data = JSON.parse(previousDataJSON);
+  }
+}
+
+var previousDataJSON = localStorage.getItem('data');
+
 var $entryBtn = document.querySelector('.entry-button');
 var $allViews = document.querySelectorAll('.view');
 var $entryForm = document.querySelector('.entry-form');
-console.log($entryForm);
+
 $entryBtn.addEventListener('click', handleSwap);
 $entryForm.addEventListener('submit', handleSubmit);
 
@@ -44,15 +59,18 @@ function handleSubmit(event) {
   if (data.days[entry.day].length === 0) {
     data.days[entry.day].push(entry);
   } else {
- 
     for (var i = 0; i < data.days[entry.day].length; i++) {
       if (data.days[entry.day][i].time > entry.time) {
         data.days[entry.day].splice(i, 0, entry);
+
         break;
-      } else if (i === data.days[entry.day].length -1) {
+      } else if (i === data.days[entry.day].length - 1) {
         data.days[entry.day].push(entry);
+
+        break;
       }
     }
   }
-
+  $entryForm.reset();
+  event.target.closest('.view').classList.add('hidden');
 }
