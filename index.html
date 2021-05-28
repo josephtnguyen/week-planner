@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- add-modal -->
-  <div class="modal-container">
+  <div class="modal-container view hidden" data-view="addModal">
     <form class="modal-box rounded">
       <div class="row center-text modal-heading">
         <h1>Add Entry</h1>
@@ -61,12 +61,12 @@
     </form>
   </div>
 <!-- update modal -->
-  <div class="modal-container hidden">
+  <div class="modal-container view hidden" data-view="updateModal">
     <div class=""></div>
 
   </div>
   <!-- delete modal -->
-  <div class="modal-container hidden">
+  <div class="modal-container view hidden" data-view="deleteModal">
     <div class=""></div>
 
   </div>
@@ -92,7 +92,7 @@
 
     <!-- New Button -->
     <div class="row center-text">
-      <button class="entry-button">Add Entry</button>
+      <button class="entry-button swap" data-view="addEntry">Add Entry</button>
     </div>
 
     <!-- Schedule -->
