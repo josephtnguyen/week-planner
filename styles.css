@@ -21,16 +21,17 @@ table {
 
 tr:nth-child(odd) {
   background-color: lightgray;
-
 }
 
 th {
   background-color: grey;
   border-right: 1px solid black;
+  height: 1.5rem;
 }
 
 td {
   border-right: 1px solid black;
+  height: 1.5rem;
 }
 
 .hidden {

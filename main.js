@@ -17,21 +17,8 @@ var $entryBtn = document.querySelector('.entry-button');
 var $allViews = document.querySelectorAll('.view');
 var $entryForm = document.querySelector('.entry-form');
 var $formCancelButton = document.querySelector('.cancel-modal-button');
+var $navDays = document.querySelector('.nav-days');
 var $tableBody = document.querySelector('.tableBody');
-
-function generateTableRow(entry) {
-  var $tr = document.createElement('tr');
-  var $tdTime = document.createElement('td');
-  var $tdDescription = document.createElement('td');
-
-  $tdTime.textContent = entry.time + ':00';
-  $tdDescription.textContent = entry.description;
-
-  $tr.append($tdTime, $tdDescription);
-
-  console.log($tr);
-  return $tr;
-}
 
 window.addEventListener('beforeunload', handleUnload);
 window.addEventListener('DOMContentLoaded', handleDOMContent);
@@ -39,6 +26,7 @@ window.addEventListener('DOMContentLoaded', handleDOMContent);
 $entryBtn.addEventListener('click', handleSwap);
 $entryForm.addEventListener('submit', handleSubmit);
 $formCancelButton.addEventListener('click', handleFormCancel);
+$navDays.addEventListener('click', handleNav);
 
 function handleUnload(event) {
   var dataJSON = JSON.stringify(data);
@@ -96,4 +84,33 @@ function handleSubmit(event) {
   }
   $entryForm.reset();
   event.target.closest('.view').classList.add('hidden');
+}
+
+function handleNav(event) {
+  if (!event.target.matches('button')) {
+    return;
+  }
+
+  var location = event.target.textContent.toLowerCase();
+
+  for (var day in data.days) {
+    if (location === day) {
+      var entries = data.days[day];
+      break;
+    }
+  }
+
+}
+
+function generateTableRow(entry) {
+  var $tr = document.createElement('tr');
+  var $tdTime = document.createElement('td');
+  var $tdDescription = document.createElement('td');
+
+  $tdTime.textContent = entry.time + ':00';
+  $tdDescription.textContent = entry.description;
+
+  $tr.append($tdTime, $tdDescription);
+
+  return $tr;
 }
