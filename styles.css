@@ -12,6 +12,27 @@ button:active {
   transform: translateY(2px);
 }
 
+table {
+  width: 100%;
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+
+}
+
+th {
+  background-color: grey;
+  border-right: 1px solid black;
+}
+
+td {
+  border-right: 1px solid black;
+}
+
 .hidden {
   display: none !important;
 }

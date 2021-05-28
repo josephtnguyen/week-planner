@@ -82,3 +82,4 @@ function handleSubmit(event) {
   $entryForm.reset();
   event.target.closest('.view').classList.add('hidden');
 }
+
