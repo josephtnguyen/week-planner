@@ -1,26 +1,22 @@
 var data = {
   view: 'default',
   days: {
-    {Monday: []
-    },
-    {Tuesday: []
-    },
-    {Wednesday: []
-    },
-    {Thursday: []
-    },
-    {Friday: []
-    },
-    {Saturday: []
-    },
-    {Sunday: []
-    }
-  },
-}
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+    sunday: []
+  }
+};
 
 var $entryBtn = document.querySelector('.entry-button');
-$entryBtn.addEventListener('click', handleSwap);
 var $allViews = document.querySelectorAll('.view');
+var $entryForm = document.querySelector('.entry-form');
+console.log($entryForm);
+$entryBtn.addEventListener('click', handleSwap);
+$entryForm.addEventListener('submit', handleSubmit);
 
 function handleSwap(event) {
   if (!event.target.matches('.swap')) {
@@ -36,4 +32,13 @@ function handleSwap(event) {
   }
 }
 
-function
+function handleSubmit(event) {
+  event.preventDefault();
+
+  var entry = {
+    time: $entryForm.elements.timeDropdown.value,
+    day: $entryForm.elements.dayDropdown.value,
+    description: $entryForm.elements.description.value
+  };
+
+}
