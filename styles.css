@@ -1,4 +1,24 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
 
 .center-text {
   text-align: center;
+}
+
+.nav-days {
+  display: flex;
+  justify-content: space-between;
+}
+
+.entry-button {
+  margin: 3rem 0;
 }
