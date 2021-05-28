@@ -41,4 +41,18 @@ function handleSubmit(event) {
     description: $entryForm.elements.description.value
   };
 
+  if (data.days[entry.day].length === 0) {
+    data.days[entry.day].push(entry);
+  } else {
+ 
+    for (var i = 0; i < data.days[entry.day].length; i++) {
+      if (data.days[entry.day][i].time > entry.time) {
+        data.days[entry.day].splice(i, 0, entry);
+        break;
+      } else if (i === data.days[entry.day].length -1) {
+        data.days[entry.day].push(entry);
+      }
+    }
+  }
+
 }
