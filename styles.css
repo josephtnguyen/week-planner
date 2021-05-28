@@ -8,6 +8,10 @@ h2 {
   margin: 0;
 }
 
+button:active {
+  transform: translateY(2px);
+}
+
 .hidden {
   display: none !important;
 }
@@ -58,8 +62,21 @@ h2 {
 .nav-days {
   display: flex;
   justify-content: space-between;
+  margin: 2rem auto;
+}
+
+.day-button {
+  background-color: whitesmoke;
+  width: 100px;
+  height: 100px;
+}
+
+.day-button:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .entry-button {
   margin: 3rem 0;
+  padding: 0.5rem 2rem;
 }

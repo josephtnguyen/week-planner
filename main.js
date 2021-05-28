@@ -11,8 +11,20 @@ var data = {
   }
 };
 
+var previousDataJSON = localStorage.getItem('data');
+
+var $entryBtn = document.querySelector('.entry-button');
+var $allViews = document.querySelectorAll('.view');
+var $entryForm = document.querySelector('.entry-form');
+var $formCancelButton = document.querySelector('.cancel-modal-button');
+
 window.addEventListener('beforeunload', handleUnload);
 window.addEventListener('DOMContentLoaded', handleDOMContent);
+
+$entryBtn.addEventListener('click', handleSwap);
+$entryForm.addEventListener('submit', handleSubmit);
+$formCancelButton.addEventListener('click', handleFormCancel);
+
 function handleUnload(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
@@ -23,15 +35,6 @@ function handleDOMContent(event) {
     data = JSON.parse(previousDataJSON);
   }
 }
-
-var previousDataJSON = localStorage.getItem('data');
-
-var $entryBtn = document.querySelector('.entry-button');
-var $allViews = document.querySelectorAll('.view');
-var $entryForm = document.querySelector('.entry-form');
-
-$entryBtn.addEventListener('click', handleSwap);
-$entryForm.addEventListener('submit', handleSubmit);
 
 function handleSwap(event) {
   if (!event.target.matches('.swap')) {
@@ -45,6 +48,11 @@ function handleSwap(event) {
       $allViews[i].classList.add('hidden');
     }
   }
+}
+
+function handleFormCancel(event) {
+  $entryForm.reset();
+  event.target.closest('.view').classList.add('hidden');
 }
 
 function handleSubmit(event) {
