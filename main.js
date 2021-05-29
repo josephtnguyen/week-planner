@@ -100,38 +100,50 @@ function handleNav(event) {
     }
   }
 
-  var tableIndex = 0;
-  var counter = 0;
-
-  for (var i = 0; i < entries.length; i++) {
-    for (var j = 0; j < $tableBody.childNodes.length; j++)
-      if ($tableBody.childNodes[j].matches('tr')) {
-        if (counter === 0) {
-          $tableBody.childNodes[j].replaceWith(generateTableRow(entries[i]));
-          tableIndex++
-          counter = tableIndex;
-        } else {
-          counter--;
-        }
-
+  for (var i = 0; i < $tableBody.children.length; i++) {
+    if (entries[i]) {
+      $tableBody.children[i].replaceWith(generateTableRow(entries[i]));
+    } else {
+      $tableBody.children[i].replaceWith(generateTableRow());
     }
   }
+  // var tableIndex = 0;
+  // var needToSkip = 0;
 
-  $tableBody.
+  // for (var i = 0; i < entries.length; i++) {
+
+  //   for (var j = 0; j < $tableBody.childNodes.length; j++) {
+  //     if ($tableBody.childNodes[j].nodeName === 'TR') {
+  //       if (needToSkip === 0) {
+  //         $tableBody.childNodes[j].replaceWith(generateTableRow(entries[i]));
+  //         tableIndex++;
+  //         needToSkip = tableIndex;
+  //         break;
+  //       } else {
+  //         needToSkip--;
+  //       }
+
+  //     }
+  //   }
+  // }
 
 }
 
 function generateTableRow(entry) {
+
   var $tr = document.createElement('tr');
   var $tdTime = document.createElement('td');
   var $tdDescription = document.createElement('td');
 
-  $tdTime.textContent = entry.time + ':00';
-  $tdDescription.textContent = entry.description;
+  if (!entry) {
+    $tdTime.textContent = '';
+    $tdDescription.textContent = '';
+  } else {
+    $tdTime.textContent = entry.time + ':00';
+    $tdDescription.textContent = entry.description;
+  }
 
   $tr.append($tdTime, $tdDescription);
 
   return $tr;
 }
-
-console.log($tableBody.childNodes);
