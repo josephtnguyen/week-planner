@@ -54,6 +54,7 @@ function handleSwap(event) {
 }
 
 function handleFormCancel(event) {
+  event.preventDefault();
   $entryForm.reset();
   event.target.closest('.view').classList.add('hidden');
 }
