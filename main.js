@@ -100,6 +100,25 @@ function handleNav(event) {
     }
   }
 
+  var tableIndex = 0;
+  var counter = 0;
+
+  for (var i = 0; i < entries.length; i++) {
+    for (var j = 0; j < $tableBody.childNodes.length; j++)
+      if ($tableBody.childNodes[j].matches('tr')) {
+        if (counter === 0) {
+          $tableBody.childNodes[j].replaceWith(generateTableRow(entries[i]));
+          tableIndex++
+          counter = tableIndex;
+        } else {
+          counter--;
+        }
+
+    }
+  }
+
+  $tableBody.
+
 }
 
 function generateTableRow(entry) {
@@ -114,3 +133,5 @@ function generateTableRow(entry) {
 
   return $tr;
 }
+
+console.log($tableBody.childNodes);
